@@ -44,18 +44,14 @@ function onGalleryClick(event) {
 
   const largeImageURL = event.target.dataset.source;
 
-  setLargeImgSrc(largeImageURL);
-}
+  if (event.target.nodeName !== 'IMG') {
+    return;
+  }
 
-// Открытие модального окна по клику на элементе галереи.
-
-const imageRef = document.querySelectorAll('.gallery__image');
-
-imageRef.forEach(item => item.addEventListener('click', onOpenModal));
-
-function onOpenModal() {
   window.addEventListener('keydown', onPressButton);
-  refs.modal.classList.add('is-open');
+  refs.modal.classList.add('is-open'); // Открытие модального окна по клику на элементе галереи.
+
+  setLargeImgSrc(largeImageURL);
 }
 
 // Подмена значения атрибута src элемента img.lightbox__image.
